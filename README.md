@@ -9,8 +9,10 @@ A Django-based web application for a clothing brand that allows users to browse 
 - User registration and authentication
 - Browse and search for products
 - Add products to cart
+- Add products to wishlist
 - Place orders and view order history
 - Admin panel for managing products and orders
+- payment intergration
 
 ---
 
