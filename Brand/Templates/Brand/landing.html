@@ -1,0 +1,67 @@
+{% extends "Brand/base.html" %}
+{% block content %}
+{% load static %}
+
+<section class="hero">
+    <div class="slides">
+<div class="slide active slide1"></div>
+<div class="slide slide2"></div>
+<div class="slide slide3"></div>
+
+ </div>
+  
+    {% if user.is_authenticated %}
+    <div class="hero-content">
+        <h1>TEMIHAVEN</h1>
+        <p>Luxury Redefined</p>
+        <a href="{% url 'brand-home' %}" class="hero-btn">Shop Now</a>
+    </div>
+</section>
+    {% else %}
+
+    <div class="hero-content">
+        <h1>TEMIHAVEN</h1>
+        <p>Luxury Redefined</p>
+        <a href="{% url 'login' %}" class="hero-btn">Shop Now</a>
+    </div>
+</section>
+   {% endif %}
+<section class="product-section mt-5">
+  <div class="container">
+    <h2 class="section-title">New Arrivals</h2>
+
+    <div class="product-grid">
+      
+      <!-- Product Card -->
+      {% for product in products %}
+<a href="{% url 'product_detail' product.id %}">
+    <div class="product-card">
+        <div class="product-img">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-info">
+            <h5>{{ product.name }}</h5>
+            <p class="price">₦{{ product.price }}</p>
+        </div>
+    </div>
+</a>
+{% endfor %}
+</section>
+
+{% block extra_js %}
+<script>
+    const slides = document.querySelectorAll(".slide");
+    let current = 0;
+
+    function changeSlide() {
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+    }
+
+    setInterval(changeSlide, 4000);
+</script>
+{% endblock %}
+
+
+{% endblock %}

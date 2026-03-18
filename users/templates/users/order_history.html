@@ -1,0 +1,41 @@
+{% extends "Brand/base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Your Orders</h2>
+
+    {% for order in orders %}
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between">
+                <span><strong>Order #{{ order.id }}</strong></span>
+                <span>{{ order.created_at|date:"M d, Y H:i" }}</span>
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">Items Purchased</h5>
+
+                <ul class="list-group mb-3">
+                    {% for item in order.items.all %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ item.product.name }} (x{{ item.quantity }})
+                            <span>₦{{ item.total_price }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="text-end">
+                    <h5 class="text-success">
+                        Total: ₦{{ order.total_price }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+    {% empty %}
+        <div class="alert alert-info text-center">
+            No orders yet.
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

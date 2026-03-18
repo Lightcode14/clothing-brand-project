@@ -1,0 +1,36 @@
+{% extends "brand/base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h3>Your Wishlist</h3>
+    <hr>
+
+    {% if items %}
+        <div class="row">
+            {% for item in items %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ item.product.image.url }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5>{{ item.product.name }}</h5>
+                            <p>${{ item.product.price }}</p>
+
+                            <a href="{% url 'product_detail' item.product.id %}" class="btn btn-primary">
+                                View
+                            </a>
+
+                            <a href="{% url 'remove_from_wishlist' item.product.id %}" 
+                               class="btn btn-danger">
+                                Remove
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Your wishlist is empty.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

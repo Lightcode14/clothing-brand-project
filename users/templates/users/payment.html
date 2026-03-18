@@ -1,0 +1,14 @@
+{% extends "Brand/base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Complete Payment</h2>
+    <p>Order ID: {{ order.id }}</p>
+    <p>Total: ₦{{ order.total_price }}</p>
+
+    <!-- Payment form / button -->
+    <form action="{% url 'initialize-payment' order.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">Pay Now</button>
+    </form>
+</div>
+{% endblock %}

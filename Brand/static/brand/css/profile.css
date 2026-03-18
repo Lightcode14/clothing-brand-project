@@ -1,0 +1,135 @@
+ body {
+    background: #f8fafc;
+}
+.profile-page {
+    max-width: 480px;
+    margin: 40px auto;
+    background: #000; /* changed to black */
+    color: #fff;
+    min-height: 100vh;
+    padding-bottom: 30px;
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+
+
+
+/* TOP SECTION */
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: #111827;
+    position: relative;
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-details h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.muted {
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+.settings-btn {
+    position: absolute;
+    right: 20px;
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+/* ACTION BUTTONS */
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    padding: 15px 20px;
+}
+
+.action-btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.primary {
+    background: #16a34a;
+    color: #fff;
+}
+
+.secondary {
+    background: #15803d;
+    color: #fff;
+}
+
+/* MENU LIST */
+.profile-menu {
+    margin-top: 10px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #1f2933;
+    color: #fff;
+    text-decoration: none;
+    background: #0f172a;
+}
+
+.menu-item:hover {
+    background: #1f2933;
+}
+
+.arrow {
+    color: #9ca3af;
+    font-size: 1.2rem;
+}
+
+/* LOGOUT */
+.logout {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    color: #f87171;
+}
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: #000; /* changed to black */
+    position: relative;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #1f2933;
+    color: #fff;
+    text-decoration: none;
+    background: #000; /* changed to black */
+}
+
+.menu-item:hover {
+    background: #111; /* slightly lighter on hover */
+}

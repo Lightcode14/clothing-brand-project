@@ -1,0 +1,17 @@
+{% extends "brand/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-4 text-center">
+
+        <h3>Reset Link Expired</h3>
+
+        <p>This password reset link has expired.</p>
+
+        <a href="{% url 'password_reset' %}" class="btn btn-warning">
+            Request New Link
+        </a>
+
+    </div>
+</div>
+{% endblock %}

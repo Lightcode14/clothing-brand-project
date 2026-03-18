@@ -1,0 +1,40 @@
+{% extends "Brand/base.html" %}
+{% block content %}
+{% load static %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>TEMIHAVEN</h1>
+        <p>Modern essentials for men of purpose.</p>
+        <a href="{% url 'shop' %}" class="hero-btn">SHOP NOW</a>
+    </div>
+</section>
+<section class="section">
+    <h2 class="section-title">NEW ARRIVALS</h2>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <a href="{% url 'product_detail' product.id %}">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h4>{{ product.name }}</h4>
+                <p>₦{{ product.price }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section class="brand-message">
+    <h2>Designed With Intention.</h2>
+    <p>
+        TEMIHAVEN represents confidence, faith and modern masculinity.
+        Built for men who move with purpose.
+    </p>
+</section>
+<section class="trust">
+    <div class="trust-grid">
+        <div>🚚 Fast Delivery</div>
+        <div>🔒 Secure Payment</div>
+        <div>⭐ Premium Quality</div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "brand/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <div class="row align-items-center">
+
+        <!-- Product Image -->
+        <div class="col-md-6 text-center">
+            <img src="{{ product.image.url }}" 
+                 alt="{{ product.name }}" 
+                 class="img-fluid rounded shadow-sm product-image">
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-3">{{ product.name }}</h2>
+            <h4 class="text-muted mb-4">₦{{ product.price }}</h4>
+
+            <p class="mb-4 text-secondary">
+                {{ product.description }}
+            </p>
+
+            <!-- Buttons -->
+            <div class="d-flex flex-column gap-3">
+
+                <form method="POST"  action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="custom-btn w-100">
+                        Add to Cart
+                    </button>
+                </form>
+
+                
+                <form method="POST" action="{% url 'add_to_wishlist' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="custom-btn w-100">
+                       Add to Wishlist
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

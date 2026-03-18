@@ -1,0 +1,678 @@
+/* Reset defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Make body full width and center content */
+body {
+  display: flex;             /* use flexbox */
+  flex-direction: column;    /* stack content vertically */
+  justify-content: center;   /* center vertically (optional) */
+  align-items: center;       /* center horizontally */
+  min-height: 100vh;         /* full viewport height */
+  text-align: center;        /* center text inside elements */
+  background-color: #A9A9A9; /* light grey */
+  min-height: 100vh;
+}
+
+/* Optional: make all direct children centered and responsive */
+body > * {
+  width: 100%;               /* allow elements to take full width if needed */
+  max-width: 1200px;         /* optional: limits width */
+  margin: 10px auto;         /* center block elements */
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px;
+    border: 1px ,solid #e8e8e8;
+
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.menu {
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.logo {
+ width: 120px;
+}
+.name{
+    font-family: "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nav-right a {
+    margin-left: 30px;
+    text-decoration: none;
+    font-size: 12px;
+    color: black;
+    border:1px solid black;
+    letter-spacing: 1px;
+}
+
+
+ 
+/* slide show */
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    margin-bottom: 100px;
+}
+
+.slides {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: top center;
+    background-position: 50% 20%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+.slide1 {
+    background-image: url("/static/brand/images/model1.jpg");
+}
+
+.slide2 {
+    background-image: url("/static/brand/images/model2.jpg");
+}
+
+.slide3 {
+    background-image: url("/static/brand/images/model3.jpg");
+}
+
+/* products */
+/* =========================
+   PRODUCT SECTION
+========================= */
+.product-section {
+    padding: 80px 100px;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+.product-card {
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   IMAGE WRAPPER
+========================= */
+.image-wrapper {
+    background:  #1c1c1c;;
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    transition: background 0.3s ease;
+}
+
+.image-wrapper:hover {
+    background: #eeeeee;
+}
+
+/* IMAGE */
+.image-wrapper img {
+    max-width: 100%;
+    height: 280px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+/* ZOOM EFFECT */
+.image-wrapper:hover img {
+    transform: scale(1.08);
+}
+
+/* =========================
+   HEART ICON
+========================= */
+.heart {
+    position: absolute;
+    top: 20px;
+    right: 22px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    user-select: none;
+}
+
+.heart:hover {
+    transform: scale(1.2);
+}
+
+/* Filled heart state */
+.heart.active {
+    color: black;
+}
+
+/* =========================
+   PRODUCT INFO
+========================= */
+.product-info {
+    margin-top: 22px;
+}
+
+.product-info h3 {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.price {
+    font-size: 15px;
+}
+
+.price .old {
+    text-decoration: line-through;
+    color: #aaa;
+    margin-right: 8px;
+}
+
+.price .new {
+    font-weight: 600;
+    color: #000;
+}
+
+/* =========================
+   FADE UP ANIMATION
+========================= */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-section {
+        padding: 50px 25px;
+    }
+}
+
+/* Dark overlay like luxury brands */
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+}
+
+/* Center text */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    letter-spacing: 4px;
+}
+
+.hero-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: white;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* Container for nav items */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* space between buttons/links */
+}
+
+/* Common button style */
+.icon-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* space between SVG and text */
+    padding: 6px 12px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+    transition: all 0.2s;
+}
+
+.icon-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: #000;
+    stroke-width: 2;
+    fill: none;
+}
+
+.icon-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.icon-btn:hover svg {
+    stroke: #fff;
+}
+
+/* Special styling for cart button */
+.cart-btn {
+    display: flex;
+    align-items: center;
+}
+
+.cart-btn span {
+    margin-left: 5px; /* space between icon and text */
+}
+
+/* Style for the plain links */
+.nav-right a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    padding: 6px 10px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-right a:hover {
+    border-bottom: 2px solid #000;
+}
+.shop {
+  padding: 4rem 5%;
+}
+
+/* PRODUCT GRID SECTION */
+.product-section {
+    padding: 80px 0;
+    margin-top: 80px;
+    background: #f8f9fa;
+}
+
+/* GRID */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+/* PRODUCT CARD */
+.product-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    transition: transform .25s ease, box-shadow .25s ease;
+    overflow: hidden;
+}
+
+/* HOVER EFFECT */
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.08);
+}
+
+/* PRODUCT IMAGE */
+.product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    transition: transform .3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* PRODUCT INFO */
+.product-info {
+    margin-top: 1.2rem;
+}
+
+.product-info h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: .4rem;
+}
+
+/* PRICE */
+.price {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* REMOVE LINK STYLING */
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Logout button should look like a link */
+.btn-link {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    color: black;
+}
+
+.logout-form {
+    display: inline;
+}
+/* profile.css */
+
+.profile-form {
+    background-color:#000;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form input[type="password"],
+.profile-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.profile-img-preview {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-img-preview img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+}
+
+.profile-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.profile-form button:hover {
+    background-color: #333;
+}
+.Update{
+    background-color: #000;
+    color:#fff ;
+}
+/* Product Detail Styling */
+.product-image {
+    max-height: 500px;
+    object-fit: cover;
+}
+
+/* Professional Black Button with Full Width */
+button.custom-btn {
+    display: inline-block;       /* Ensures button behaves like a block element */
+    width: 100%;                 /* Full width, replaces w-100 */
+    background-color: #000;      /* Black background */
+    color: #fff;                 /* White text */
+    border: none;                /* No border */
+    padding: 14px 20px;          /* Padding for size */
+    font-weight: 600;            /* Bold-ish text */
+    letter-spacing: 0.5px;       /* Slight spacing */
+    border-radius: 6px;          /* Rounded corners */
+    text-align: center;          /* Center text */
+    cursor: pointer;             /* Pointer on hover */
+    transition: all 0.3s ease;   /* Smooth hover/active transition */
+}
+
+/* Hover Effect */
+button.custom-btn:hover {
+    background-color: #555;      /* Grey on hover */
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Active Effect */
+button.custom-btn:active {
+    transform: translateY(0);
+}
+
+/* Side bar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    padding-top: 60px;
+    transition: 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar a {
+    display: block;
+    padding: 15px 30px;
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    background: #f4f4f4;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.hero {
+    height: 100vh;
+    background: url("{% static 'images/hero.jpg' %}") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    letter-spacing: 3px;
+}
+
+.hero-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: white;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.hero-btn:hover {
+    background: black;
+    color: white;
+}
+.section {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.product-card img {
+    width: 100%;
+    transition: 0.3s;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+.brand-message {
+    background: #f8f8f8;
+    padding: 100px 20%;
+    text-align: center;
+}
+
+.brand-message h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+}
+.logout-btn{
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 10px;
+    font-family: inherit;
+}
+
+.logout-btn:hover{
+    color: #1a4d8f;   /* same hover color as your links */
+}
+.search-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.search-box i {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #555;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+}

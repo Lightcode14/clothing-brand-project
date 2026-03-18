@@ -1,0 +1,70 @@
+{% extends "Brand/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+
+  <div class="row">
+
+    <!-- Checkout Form -->
+    <div class="col-lg-7">
+      <h4 class="mb-4">Checkout Details</h4>
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label>Name</label>
+          <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label>Phone</label>
+          <input type="text" name="phone" class="form-control">
+        </div>
+
+        <div class="mb-3">
+          <label>Address</label>
+          <textarea name="address" class="form-control"></textarea>
+        </div>
+
+        <button class="btn btn-primary w-100">
+          Place Order
+        </button>
+
+      </form>
+    </div>
+
+
+    <!-- Order Summary -->
+    <div class="col-lg-5">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5>Order Summary</h5>
+          <hr>
+
+          {% for item in cart_items %}
+            <div class="d-flex justify-content-between">
+              <p>{{ item.product.name }} x {{ item.quantity }}</p>
+              <p>${{ item.total_price }}</p>
+            </div>
+          {% endfor %}
+
+          <hr>
+
+          <h5 class="text-end">
+            Total: ${{ total_price }}
+          </h5>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

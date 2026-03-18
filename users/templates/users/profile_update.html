@@ -1,0 +1,41 @@
+
+{% extends 'brand/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm p-4">
+        <h2 class="mb-4 text-center">Update Profile</h2>
+        <div class="Update">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <!-- Left: Profile Image -->
+                <div class="col-md-4 text-center">
+                    <img src="{{ request.user.profile.image.url }}" 
+                         class="rounded-circle img-thumbnail mb-3"
+                         style="width: 150px; height: 150px; object-fit: cover;">
+                </div>
+
+                <!-- Right: Form Fields -->
+                <div class="col-md-8">
+                    {% crispy user_form %}
+                    {% crispy profile_form %}
+                        <button type="submit" class="btn btn-dark"
+                            onmouseover="this.classList.replace('btn-dark','btn-success')"
+                            onmouseout="this.classList.replace('btn-success','btn-dark')">
+                            Update
+                        </button>
+
+                 
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% block extra_js %}
+<script src="{% static 'brand/js/profile.js' %}"></script>
+{% endblock %}
+{% endblock %}

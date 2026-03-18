@@ -1,0 +1,15 @@
+{% extends "Brand/base.html" %}
+{% block content %}
+<h2>Your Transactions</h2>
+
+{% for t in transactions %}
+    <div>
+        <p>ID: {{ t.transaction_id }}</p>
+        <p>Amount: {{ t.amount }}</p>
+        <p>Status: {{ t.status }}</p>
+        <p>Date: {{ t.created_at }}</p>
+    </div>
+{% empty %}
+    <p>No transactions yet.</p>
+{% endfor %}
+{% endblock %}

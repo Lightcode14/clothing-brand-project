@@ -1,0 +1,77 @@
+{% extends "brand/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'brand/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+
+    <!-- TOP USER INFO -->
+    <div class="profile-top">
+        <img src="{{ request.user.profile.image.url }}"  class="avatar">
+
+        <div class="user-details">
+            <h3>{{ user.username }}</h3>
+
+            {% if user.profile.phone %}
+                <p class="muted">{{ user.profile.phone }}</p>
+            {% endif %}
+
+            <p class="muted">{{ user.email }}</p>
+        </div>
+
+      
+    </div>
+
+
+    <!-- MENU LIST -->
+    <div class="profile-menu">
+        
+        <a href="{% url 'profile-update' %}" class="menu-item">
+            <span>🧾 update profile</span>
+            <span class="arrow">›</span>
+        </a>
+
+        <a href="{% url 'order_history' %}" class="menu-item">
+            <span>🧾 Order History</span>
+            <span class="arrow">›</span>
+        </a>
+
+        <a href="{% url 'transactions' %}" class="menu-item">
+            <span>💳 Transactions</span>
+            <span class="arrow">›</span>
+        </a>
+
+        <a href="{% url 'cart_view' %}" class="menu-item">
+            <span>🛒 Cart</span>
+            <span class="arrow">›</span>
+        </a>
+
+        <a href="{% url 'wishlist' %}" class="menu-item">
+            <span>❤️ Wishlist</span>
+            <span class="arrow">›</span>
+        </a>
+
+        <a href="{url 'customer-service' %}" class="menu-item">
+            <span>📍 Addresses</span>
+            <span class="arrow">›</span>
+        </a>
+
+        <a href="{% url 'password_reset'%}" class="menu-item">
+            <span>🔐 Change Password</span>
+            <span class="arrow">›</span>
+        </a>
+
+        <!-- LOGOUT -->
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="menu-item logout">
+                🚪 Logout
+            </button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
