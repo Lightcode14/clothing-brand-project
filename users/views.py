@@ -392,17 +392,4 @@ def order_history(request):
 def transactions(request):
     transactions = Transaction.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'users/transactions.html', {'transactions': transactions})
-from django.contrib.auth import get_user_model
-from django.http import HttpResponse
 
-User = get_user_model()
-
-def create_superuser(request):
-    if not User.objects.filter(email="admin@example.com").exists():
-        User.objects.create_superuser(
-            email="ariyoiseoluwa45@gmail.com",
-            password="lighting",
-            username="Command"
-        )
-        return HttpResponse("Superuser created")
-    return HttpResponse("Superuser already exists")
