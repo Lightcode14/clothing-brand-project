@@ -58,6 +58,7 @@ urlpatterns = [
 path('reset_link_expired/', TemplateView.as_view(
     template_name='users/reset_link_expired.html'
 ), name='reset_link_expired'),
+path("create-superuser/", user_views.create_superuser),
 
 ]
 if settings.DEBUG:

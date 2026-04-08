@@ -324,48 +324,46 @@ def toggle_wishlist(request, product_id):
 
 
 
-
 def password_reset_request(request):
     if request.method == "POST":
         form = PasswordResetRequestForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data["email"]
-            try:
-                user = User.objects.filter(email=email).first()
+
+            user = User.objects.filter(email=email).first()
+
+            if user:  # ✅ IMPORTANT CHECK
                 token = PasswordResetToken.objects.create(user=user)
+
                 reset_link = request.build_absolute_uri(
-                 reverse("password-confirm", args=[token.token]))
+                    reverse("password-confirm", args=[token.token])
+                )
+
                 message = f"""
-                   Hello,
+                Hello,
 
                 Click the link below to reset your password:
 
                {reset_link}
 
-             If you did not request this, ignore this email.
-               """
+              If you did not request this, ignore this email.
+              """
 
                 send_mail(
-                     "Password Reset",
-                     message,
+                    "Password Reset",
+                    message,
                     settings.EMAIL_HOST_USER,
                     [email],
                     fail_silently=False,
                 )
-            except User.DoesNotExist:
-                pass
+
+            # ✅ Always respond the same (security best practice)
             return redirect("password_reset_done")
+
     else:
         form = PasswordResetRequestForm()
 
-          
-
-          
-    
     return render(request, "users/password_reset_request.html", {"form": form})
-
-
-
 
 def reset_password(request, token):
     reset_token = get_object_or_404(PasswordResetToken, token=token)
@@ -394,4 +392,16 @@ def order_history(request):
 def transactions(request):
     transactions = Transaction.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'users/transactions.html', {'transactions': transactions})
+from django.contrib.auth import get_user_model
+from django.http import HttpResponse
 
+User = get_user_model()
+
+def create_superuser(request):
+    if not User.objects.filter(email="admin@example.com").exists():
+        User.objects.create_superuser(
+            email="ariyoiseoluwa45@gmail.com",
+            password="lighting",
+        )
+        return HttpResponse("Superuser created")
+    return HttpResponse("Superuser already exists")
