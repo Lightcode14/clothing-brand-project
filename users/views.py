@@ -402,6 +402,7 @@ def create_superuser(request):
         User.objects.create_superuser(
             email="ariyoiseoluwa45@gmail.com",
             password="lighting",
+            username="Command"
         )
         return HttpResponse("Superuser created")
     return HttpResponse("Superuser already exists")
