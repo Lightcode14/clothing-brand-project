@@ -20,7 +20,7 @@ A Django-based web application for a clothing brand that allows users to browse 
 
 - **Backend:** Django
 - **Frontend:** HTML, CSS, JavaScript
-- **Database:** SQLite (default for Django, can be replaced with PostgreSQL)
+- **Database:** SQLite
 - **Version Control:** Git & GitHub
 
 ---
