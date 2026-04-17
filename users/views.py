@@ -95,14 +95,17 @@ def login_view(request):
 def profile_view(request):
     return render(request, 'users/profile.html')
 
-@login_required
+from users.models import Profile
+
 def profile_update_view(request):
+    profile, created = Profile.objects.get_or_create(user=request.user)
+
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(
             request.POST,
             request.FILES,
-            instance=request.user.profile
+            instance=profile
         )
 
         if user_form.is_valid() and profile_form.is_valid():
@@ -113,7 +116,7 @@ def profile_update_view(request):
 
     else:
         user_form = UserUpdateForm(instance=request.user)
-        profile_form = ProfileUpdateForm(instance=request.user.profile)
+        profile_form = ProfileUpdateForm(instance=profile)
 
     context = {
         'user_form': user_form,
@@ -121,7 +124,6 @@ def profile_update_view(request):
     }
 
     return render(request, 'users/profile_update.html', context)
-
 @login_required
 def cart_view(request):
     cart_items = CartItem.objects.filter(user=request.user)

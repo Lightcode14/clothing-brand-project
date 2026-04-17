@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-*!^d%1i^3p26w$9g@9&w8m1gk*-f+k=erdv=a=6c^fv++una9e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [""]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -146,7 +146,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 SITE_ID = 1
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST='smtp-relay.brevo.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
