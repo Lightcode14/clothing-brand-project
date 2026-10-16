@@ -14,7 +14,7 @@ from .forms import ProfileUpdateForm, UserRegisterForm,UserLoginForm, UserUpdate
 from .models import CartItem, Order, OrderItem, Wishlist
 from Brand.models import Products
 import requests
-from .models import Transaction
+from .models import Transaction,Profile
 from django.conf import settings
 import uuid
 from django.http import JsonResponse
@@ -95,7 +95,6 @@ def login_view(request):
 def profile_view(request):
     return render(request, 'users/profile.html')
 
-from users.models import Profile
 
 def profile_update_view(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
