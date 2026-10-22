@@ -1,10 +1,28 @@
 {% extends "Brand/base.html "%}
 {% block content %}
 
-<h1>
-    <strong>
-        <br><br><br>
-        COMING SOON
-    </strong>
-</h1>
+<section class="arrivals">
+    <div class="arrivals-head">
+        <h2 class="arrivals-title">New Arrivals</h2>
+        <p class="arrivals-sub">Fresh pieces from the latest Temihaven collection</p>
+    </div>
+
+    <div class="arrivals-grid">
+        {% for product in products %}
+        <a href="{% url 'product_detail' product.id %}" class="arrival-card">
+            <div class="arrival-img">
+                <span class="arrival-badge">NEW</span>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+            </div>
+            <div class="arrival-info">
+                <h3>{{ product.name }}</h3>
+                <p class="arrival-price">₦{{ product.price|floatformat:0 }}</p>
+            </div>
+        </a>
+        {% empty %}
+        <p class="arrivals-empty">No products yet. Check back soon.</p>
+        {% endfor %}
+    </div>
+</section>
+
 {% endblock %}

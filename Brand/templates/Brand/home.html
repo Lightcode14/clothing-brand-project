@@ -1,40 +1,40 @@
 {% extends "Brand/base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'brand/css/shop.css' %}">
+{% endblock %}
+
 {% block content %}
-<section class="product-section">
-  <div class="product-grid">
+<section class="shop-page">
 
-    {% for product in products %}
-    <div class="product-card">
-
-      <div class="image-wrapper">
-
-        <a href="{% url 'product_detail' product.id %}" class="product-link">
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        </a>
-      </div>
-
-      <div class="product-info">
-        <h3>{{ product.name }}</h3>
-
-        <p class="price">
-          {% if product.old_price %}
-            <span class="old">₦{{ product.old_price }}</span>
-          {% endif %}
-          <span class="new">₦{{ product.price }}</span>
-        </p>
-      </div>
-
+    <div class="shop-head">
+        <h1 class="shop-title">TEMIHAVEN</h1>
     </div>
-    {% empty %}
-      <p>No products available.</p>
-    {% endfor %}
 
-  </div>
+    <div class="shop-grid">
+        {% for product in products %}
+        <a href="{% url 'product_detail' product.id %}" class="shop-card">
+
+            <div class="shop-img">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+            </div>
+
+            <div class="shop-info">
+                <h3>{{ product.name }}</h3>
+                <p class="shop-price">
+                    {% if product.old_price %}
+                        <span class="shop-old">₦{{ product.old_price|floatformat:"0g" }}</span>
+                    {% endif %}
+                    <span class="shop-new">₦{{ product.price|floatformat:"0g" }}</span>
+                </p>
+            </div>
+
+        </a>
+        {% empty %}
+        <p class="shop-empty">No products available.</p>
+        {% endfor %}
+    </div>
+
 </section>
-
-
-
-
 {% endblock %}

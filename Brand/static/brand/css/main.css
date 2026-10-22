@@ -676,3 +676,253 @@ button.custom-btn:active {
     width: 100%;
     font-size: 16px;
 }
+
+/* ===== Mobile navbar fix ===== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .logo {
+        width: 80px;
+    }
+
+    .name {
+        font-size: 20px;
+    }
+
+    .nav-left {
+        gap: 0;
+    }
+
+    .nav-right {
+        gap: 6px;
+    }
+
+    .nav-right a {
+        margin-left: 0;
+        padding: 4px 6px;
+        font-size: 12px;
+    }
+
+    /* icons only on mobile */
+    .icon-btn span {
+        display: none;
+    }
+
+    .icon-btn {
+        padding: 6px 8px;
+    }
+
+    /* Profile / Wishlist / Log in links move into the sidebar on mobile */
+    .nav-right a.nav-link {
+        display: none;
+    }
+}
+/* =========================================================
+   NEW ARRIVALS (landing page)
+========================================================= */
+.arrivals {
+    background: #fff;
+    border-radius: 20px;
+    padding: 64px 32px 72px;
+    margin: 0 auto 60px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+}
+
+.arrivals-head {
+    margin-bottom: 44px;
+}
+
+
+.arrivals-title {
+    position: relative;
+    display: inline-block;
+    font-family: "Times New Roman", serif;
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #111;
+    padding-bottom: 16px;
+}
+
+/* gold underline bar */
+.arrivals-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    background: #c9a24b;
+    border-radius: 2px;
+}
+
+.arrivals-sub {
+    margin-top: 14px;
+    font-size: 15px;
+    color: #666;
+}
+
+/* grid */
+.arrivals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 24px;
+}
+
+/* card */
+.arrival-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.arrival-card:hover {
+    color: inherit;
+    transform: translateY(-6px);
+    border-color: #000;
+    box-shadow: 0 0 0 1px #000, 0 18px 36px rgba(0, 0, 0, 0.14);
+}
+
+.arrival-img {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    overflow: hidden;
+}
+
+.arrival-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.arrival-card:hover .arrival-img img {
+    transform: scale(1.08);
+}
+
+.arrival-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    background: #111;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.arrival-info {
+    padding: 16px 14px 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.arrival-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.3;
+    min-height: 2.6em;          /* keeps all cards the same height */
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.arrival-price {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #b8902f;
+}
+
+.arrivals-empty {
+    grid-column: 1 / -1;
+    color: #666;
+    padding: 40px 0;
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 768px) {
+    .arrivals {
+        padding: 48px 20px 52px;
+        border-radius: 16px;
+    }
+
+    .arrivals-title {
+        font-size: 34px;
+    }
+
+    .arrivals-grid {
+        gap: 16px;
+    }
+}
+
+/* ---------- phone: 2 cards per row ---------- */
+@media (max-width: 576px) {
+    .arrivals {
+        padding: 36px 12px 40px;
+        border-radius: 14px;
+    }
+
+    .arrivals-head {
+        margin-bottom: 28px;
+    }
+
+    .arrivals-title {
+        font-size: 26px;
+        letter-spacing: 2px;
+    }
+
+    .arrivals-sub {
+        font-size: 13px;
+    }
+
+    .arrivals-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .arrival-img {
+        padding: 8px;
+    }
+
+    .arrival-badge {
+        top: 8px;
+        left: 8px;
+        font-size: 9px;
+        padding: 4px 8px;
+    }
+
+    .arrival-info {
+        padding: 12px 10px 14px;
+    }
+
+    .arrival-info h3 {
+        font-size: 13px;
+    }
+
+    .arrival-price {
+        font-size: 14px;
+    }
+}

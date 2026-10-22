@@ -1,43 +1,72 @@
 {% extends 'Brand/base.html' %}
-{% block content %}
-<h2>Your Cart</h2>
+{% load static %}
 
-{% if cart_items %}
-    <table>
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for item in cart_items %}
-            <tr>
-                <td>{{ item.product.name }}</td>
-                <td>N{{ item.product.price }}</td>
-                <td>
-                    <form action="{% url 'update_cart' item.id %}" method="POST">
-                        {% csrf_token %}
-                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
-                        <button type="submit">Update</button>
-                    </form>
-                </td>
-                <td>N{{ item.total_price }}</td>
-                <td><a href="{% url 'remove_from_cart' item.id %}">Remove</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <h3>Total: N{{ total }}</h3>
-    <div class="text-center mt-4">
-    <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg">
-        Proceed to Checkout
-    </a>
-</div>
-{% else %}
-    <p>Your cart is empty.</p>
-{% endif %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'brand/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="cart-page">
+    <h1 class="cart-title">Your Cart</h1>
+
+    {% if cart_items %}
+    <div class="cart-layout">
+
+        <!-- ITEMS -->
+        <div class="cart-items">
+            {% for item in cart_items %}
+            <article class="cart-item">
+
+                <div class="cart-item-img">
+                    {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    {% endif %}
+                </div>
+
+                <div class="cart-item-info">
+                    <h3>{{ item.product.name }}</h3>
+                    <p class="cart-item-price">₦{{ item.product.price|floatformat:"0g" }}</p>
+                </div>
+
+                <form action="{% url 'update_cart' item.id %}" method="POST" class="cart-qty-form">
+                    {% csrf_token %}
+                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" aria-label="Quantity">
+                    <button type="submit">Update</button>
+                </form>
+
+                <p class="cart-item-total">₦{{ item.total_price|floatformat:"0g" }}</p>
+
+                <a href="{% url 'remove_from_cart' item.id %}" class="cart-remove">Remove</a>
+
+            </article>
+            {% endfor %}
+        </div>
+
+        <!-- SUMMARY -->
+        <aside class="cart-summary">
+            <h2>Order Summary</h2>
+
+            <div class="cart-summary-row">
+                <span>Items</span>
+                <span>{{ cart_items|length }}</span>
+            </div>
+
+            <div class="cart-summary-row cart-summary-total">
+                <span>Total</span>
+                <span>₦{{ total|floatformat:"0g" }}</span>
+            </div>
+
+            <a href="{% url 'checkout' %}" class="cart-checkout-btn">Proceed to Checkout</a>
+            <a href="{% url 'brand-home' %}" class="cart-continue">Continue shopping</a>
+        </aside>
+
+    </div>
+
+    {% else %}
+    <div class="cart-empty">
+        <p>Your cart is empty.</p>
+        <a href="{% url 'brand-home' %}" class="cart-checkout-btn">Start shopping</a>
+    </div>
+    {% endif %}
+</section>
 {% endblock %}
